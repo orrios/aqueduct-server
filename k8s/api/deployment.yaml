@@ -1,0 +1,46 @@
+# apiVersion: apps/v1beta1
+# kind: Deployment
+# metadata:
+#   name: web-deployment
+# spec:
+#   replicas: 2
+#   template:
+#     metadata:
+#       labels:
+#         app: dart-heroes
+#         role: frontend
+#     spec:
+#       containers:
+#         - name: dart-messages
+#           imagePullPolicy: Always
+#           image: gcr.io/tarea-1-arqui-215923/aqueduct-messages:latest
+#           envFrom:
+#             - secretRef:
+#                 name: secrets
+#             - configMapRef:
+#                 name: config
+#           ports:
+#             - containerPort: 80
+#           securityContext:
+#             runAsNonRoot: false
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dart-messages
+        role: frontend
+    spec:
+      containers:
+        - name: dart-messages
+          imagePullPolicy: Always
+          image: gcr.io/tarea-1-arqui-215923/aqueduct-messages:latest
+          ports:
+            - containerPort: 80
+      securityContext:
+        runAsNonRoot: false

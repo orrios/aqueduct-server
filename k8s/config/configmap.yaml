@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+data:
+  PGDATA: /var/lib/postgresql/data/dart-messages
+  POSTGRES_DB: dart
+  POSTGRES_USER: dart_test
